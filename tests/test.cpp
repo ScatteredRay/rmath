@@ -28,6 +28,10 @@ TEST_CASE("vector access") {
         a.y = 8;
         CHECK(a[0] == 7);
         CHECK(a.d[1] == 8);
+
+        const vector2 b(a);
+        CHECK(b[0] == a[0]);
+        CHECK(b[1] == a[1]);
     }
 }
 

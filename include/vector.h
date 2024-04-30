@@ -5,6 +5,7 @@
 
 namespace rm {
     struct vector2 {
+        
         static const size_t size = 2;
         union {
             struct {
@@ -20,6 +21,7 @@ namespace rm {
         vector2(float _xy[2]);
 
         float& operator[](int i);
+        float operator[](int i) const;
     };
 
     vector2 add(const vector2&, const vector2&);
