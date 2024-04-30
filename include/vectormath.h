@@ -1,7 +1,7 @@
 #ifndef RMATH_VECTORMATH_H
 #define RMATH_VECTORMATH_H
 
-namespace rmath {
+namespace rm {
 
     struct point3;
     struct float2;

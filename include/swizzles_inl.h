@@ -1,7 +1,7 @@
 #ifndef RMATH_SWIZZLES_INL_H
 #define RMATH_SWIZZLES_INL_H
 
-namespace rmath {
+namespace rm {
 
     template<int a, int b, int c, int d> float4 swizzle(const float3 vec)
     {
