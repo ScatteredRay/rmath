@@ -37,17 +37,6 @@ namespace rm {
 
     typedef point3 point;
 
-    struct float2
-    {
-        float x;
-        float y;
-
-        float2(float _xy);
-        float2(const float2& _xy);
-        float2(float _x, float _y);
-
-        float operator[](int);
-    };
 
     struct float3
     {
