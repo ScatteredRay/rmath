@@ -1,4 +1,5 @@
 #include "vector.h"
+#include "vector_generic.h"
 
 #include <doctest.h>
 
@@ -62,10 +63,17 @@ TEST_CASE("vector access") {
         CHECK(c.y == 9);
         CHECK(c.z == 9);
     }
+
+    SUBCASE("generic vector3") {
+        vector<float, 3> a(3, 4, 5);
+
+        CHECK(a.x == 3);
+        CHECK(a.y == 4);
+        CHECK(a.z == 5);
+    }
 }
 
-TEST_CASE("vector sum")
-{
+TEST_CASE("vector sum") {
     SUBCASE("vector2") {
         vector2 a(1, 2);
         vector2 b(3, 4);
@@ -93,5 +101,24 @@ TEST_CASE("vector sum")
         CHECK(d.x == 4);
         CHECK(d.y == 5);
         CHECK(d.z == 6);
+    }
+}
+
+TEST_CASE("vector mul") {
+    SUBCASE("vector2") {
+        vector2 a(2, 3);
+        vector2 b = mul(a, 2.0f);
+        CHECK(b.x == 4.0f);
+        CHECK(b.y == 6.0f);
+    }
+}
+
+TEST_CASE("vector dot") {
+    SUBCASE("vector2") {
+        vector2 a(2, 0);
+        vector2 b(0, 1);
+
+        CHECK(dot(a, a) == 4.0f);
+        CHECK(dot(a, b) == 0.0f);
     }
 }

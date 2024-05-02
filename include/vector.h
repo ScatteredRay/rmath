@@ -63,10 +63,25 @@ namespace rm {
     float length(const vector2&);
     vector2 normalize(const vector2&);
 
+    float sum(const vector2&);
+
+    vector2 lerp(const vector2&, const vector2&, float t);
+    vector2 slerp(const vector2&, const vector2&, float t);
+
+    vector2 operator+(const vector2&, const vector2&);
+    vector2 operator-(const vector2&, const vector2&);
+    vector2 operator*(const vector2&, float);
+    vector2 operator/(const vector2&, float);
+
+    vector3 operator+(const vector3&, const vector3&);
+    vector3 operator-(const vector3&, const vector3&);
+    vector3 operator*(const vector3&, float);
+    vector3 operator/(const vector3&, float);
+
     // What of these aliases do we like?
     using vec2 = vector2;
     using vec3 = vector3;
-    using vector = vector3;
+    //using vector = vector3;
 }
 
 #endif //_RMATH_VECTOR_H_

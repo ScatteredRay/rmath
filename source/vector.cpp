@@ -109,6 +109,16 @@ namespace rm {
             l.y-r.y);
     }
 
+    vector2 mul(const vector2& v, float s) {
+        return vector2(
+            v.x*s,
+            v.y*s);
+    }
+
+    float dot(const vector2& l, const vector2& r) {
+        return l.x*r.x + l.y*r.y;
+    }
+
     vector3 add(const vector3& l, const vector3& r) {
         return add<vector3>(l, r);
     }
