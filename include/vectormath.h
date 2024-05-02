@@ -4,9 +4,7 @@
 namespace rm {
 
     struct point3;
-    struct float2;
-    struct float3;
-    struct float4;
+    struct vector3;
 
     struct point3
     {
@@ -30,50 +28,12 @@ namespace rm {
         point3(int _x, int _y, int _z);
         // Convienience, be wary of usage.
         point3(float _x, float _y, float _z);
-        point3(float3 _xyz);
+        point3(vector3 _xyz);
 
         int operator[](int);
     };
 
     typedef point3 point;
-
-
-    struct float3
-    {
-        float x;
-        float y;
-        float z;
-
-        float3(float _xyz);
-        float3(const float3& _xyz);
-        float3(const float2& _xy, float _z);
-        float3(float _x, const float2& _yz);
-        float3(float _x, float _y, float _z);
-
-        float operator[](int);
-    };
-
-    struct float4
-    {
-        float x;
-        float y;
-        float z;
-        float w;
-
-        float4(float _xyzw);
-        float4(const float4& _xyzw);
-        float4(const float3& _xyz, float _w);
-        float4(float _x, const float3& _yzw);
-        float4(const float2& _xy, const float2& _zw);
-        float4(const float2& _xy, float _z, float _w);
-        float4(float _x, float _y, const float2& _zw);
-        float4(float _x, const float2& _yz, float _w);
-        float4(float _x, float _y, float _z, float _w);
-
-        float operator[](int);
-    };
 }
-
-
 
 #endif //RMATH_VECTORMATH_H

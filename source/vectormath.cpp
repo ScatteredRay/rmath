@@ -14,17 +14,4 @@ unsigned int rm::point3::decimalPrecision = 6;
 
 
 namespace rm {
-
-    float3::float3(float _x, float _y, float _z) {
-        this->x = _x;
-        this->y = _y;
-        this->z = _z;
-    }
-
-    float3 add(const float3& l, const float3& r) {
-        return float3(
-            l.x+r.x,
-            l.y+r.y,
-            l.z+r.z);
-    }
 }

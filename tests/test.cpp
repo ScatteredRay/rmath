@@ -32,6 +32,38 @@ TEST_CASE("vector access") {
         const vector2 b(a);
         CHECK(b[0] == a[0]);
         CHECK(b[1] == a[1]);
+
+        vector2 c(9);
+        CHECK(c.x == 9);
+        CHECK(c.y == 9);
+    }
+
+    SUBCASE("vector3") {
+        vector3 a(3, 4, 5);
+
+        CHECK(a.x == 3);
+        CHECK(a.y == 4);
+        CHECK(a.z == 5);
+
+        CHECK(a[0] == 3);
+        CHECK(a[1] == 4);
+        CHECK(a[2] == 5);
+
+        CHECK(a.d[0] == 3);
+        CHECK(a.d[1] == 4);
+        CHECK(a.d[2] == 5);
+
+        a.x = 6;
+        a[1] = 7;
+        a.d[2] = 8;
+        CHECK(a[0] == 6);
+        CHECK(a.d[1] == 7);
+        CHECK(a.z == 8);
+
+        vector3 c(9);
+        CHECK(c.x == 9);
+        CHECK(c.y == 9);
+        CHECK(c.z == 9);
     }
 }
 
@@ -51,19 +83,19 @@ TEST_CASE("vector sum")
     }
 
     SUBCASE("vector3") {
-        float3 a(1, 2, 3);
-        float3 b(4, 5, 6);
+        vector3 a(1, 2, 3);
+        vector3 b(4, 5, 6);
 
-        float3 c = add(a, b);
+        vector3 c = add(a, b);
 
         CHECK(c.x == 5);
         CHECK(c.y == 7);
         CHECK(c.z == 9);
 
-        // float3 d = sub(c, a);
-        // CHECK(d.x == 4);
-        // CHECK(d.y == 5);
-        // CHECK(d.z == 6);
+        vector3 d = sub(c, a);
+        CHECK(d.x == 4);
+        CHECK(d.y == 5);
+        CHECK(d.z == 6);
     }
 }
 
