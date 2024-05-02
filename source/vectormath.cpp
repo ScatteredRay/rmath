@@ -1,5 +1,5 @@
-#include "vectormath.h"
-#include "vectormath_inl.h"
+#include "rw/vectormath.h"
+#include "rw/vectormath_inl.h"
 
 // This is where all of our precision comes from, it's the amount of bits we
 // spend on the decimal component on conversion to floating point.
