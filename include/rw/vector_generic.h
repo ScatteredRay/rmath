@@ -1,3 +1,6 @@
+#ifndef _RMATH_VECTOR_GENERIC_H_
+#define _RMATH_VECTOR_GENERIC_H_
+
 #include "rw/vector.h"
 
 namespace rm {
@@ -12,4 +15,12 @@ namespace rm {
         vector(float _x, float _y, float _z);
         vector(float _xyz[size]);
     };
+
+    template<typename t>
+    t add(const t& l, const t& r);
+
+    template<typename t>
+    t sub(const t& l, const t& r);
 }
+
+#endif //_RMATH_VECTOR_GENERIC_H_

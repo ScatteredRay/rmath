@@ -2,6 +2,7 @@
 #include "rw/vector_generic.h"
 
 #include <doctest.h>
+#include <cmath>
 
 using namespace rm;
 
@@ -111,6 +112,14 @@ TEST_CASE("vector mul") {
         CHECK(b.x == 4.0f);
         CHECK(b.y == 6.0f);
     }
+
+    SUBCASE("vector3") {
+        vector3 a(2, 3, 4);
+        vector3 b = mul(a, 2.0f);
+        CHECK(b.x == 4.0f);
+        CHECK(b.y == 6.0f);
+        CHECK(b.z == 8.0f);
+    }
 }
 
 TEST_CASE("vector dot") {
@@ -120,5 +129,39 @@ TEST_CASE("vector dot") {
 
         CHECK(dot(a, a) == 4.0f);
         CHECK(dot(a, b) == 0.0f);
+    }
+
+    SUBCASE("vector2") {
+        vector3 a(0.2, 0.5, 0.8);
+        vector3 b(1, 0, 0);
+        vector3 c(0, 1, 0);
+        vector3 d(0, 0, 1);
+
+        CHECK(dot(a, b) == 0.2f);
+        CHECK(dot(a, c) == 0.5f);
+        CHECK(dot(a, d) == 0.8f);
+    }
+}
+
+TEST_CASE("vector length mag") {
+    SUBCASE("vector2") {
+        vector2 a(1, 2);
+        CHECK(lengthSqr(a) == 5.0f);
+        CHECK(abs(length(a) - sqrt(5.0f)) < 0.01f); // REVIST: why isn't this exact?
+        vector2 n = normalize(a);
+        CHECK(abs(n.x - 0.447f) < 0.01f);
+        CHECK(abs(n.y - 0.894f) < 0.01f);
+        CHECK(sum(a) == 3.0f);
+    }
+
+    SUBCASE("vector3") {
+        vector3 a(1, 2, 1);
+        CHECK(lengthSqr(a) == 6.0f);
+        CHECK(abs(length(a) - sqrt(6.0f)) < 0.01f);
+        vector3 n = normalize(a);
+        CHECK(abs(n.x - 0.408f) < 0.01f);
+        CHECK(abs(n.y - 0.816f)< 0.01f);
+        CHECK(abs(n.z - 0.408f) < 0.01f);
+        CHECK(sum(a) == 4.0f);
     }
 }

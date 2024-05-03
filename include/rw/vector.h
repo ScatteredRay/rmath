@@ -58,12 +58,18 @@ namespace rm {
     vector3 mul(const vector3&, float);
 
     float dot(const vector2&, const vector2&);
+    float dot(const vector3&, const vector3&);
 
     float lengthSqr(const vector2&);
     float length(const vector2&);
     vector2 normalize(const vector2&);
 
+    float lengthSqr(const vector3&);
+    float length(const vector3&);
+    vector3 normalize(const vector3&);
+
     float sum(const vector2&);
+    float sum(const vector3&);
 
     vector2 lerp(const vector2&, const vector2&, float t);
     vector2 slerp(const vector2&, const vector2&, float t);
@@ -71,12 +77,10 @@ namespace rm {
     vector2 operator+(const vector2&, const vector2&);
     vector2 operator-(const vector2&, const vector2&);
     vector2 operator*(const vector2&, float);
-    vector2 operator/(const vector2&, float);
 
     vector3 operator+(const vector3&, const vector3&);
     vector3 operator-(const vector3&, const vector3&);
     vector3 operator*(const vector3&, float);
-    vector3 operator/(const vector3&, float);
 
     // What of these aliases do we like?
     using vec2 = vector2;
