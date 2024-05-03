@@ -1,5 +1,5 @@
-#include "rw/vector.h"
-#include "rw/vector_generic.h"
+#include "rm/vector.h"
+#include "rm/vector_generic.h"
 
 #include <doctest.h>
 #include <cmath>

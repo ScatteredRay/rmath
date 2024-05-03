@@ -1,7 +1,7 @@
 #ifndef _RMATH_VECTOR_GENERIC_INL_H_
 #define _RMATH_VECTOR_GENERIC_INL_H_
 
-#include "rw/vector_generic.h"
+#include "rm/vector_generic.h"
 
 namespace rm {
     template<typename t>
