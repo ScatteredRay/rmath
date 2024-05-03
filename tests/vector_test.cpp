@@ -2,6 +2,8 @@
 #include "rm/vector_generic.h"
 
 #include <doctest.h>
+
+#include <stdint.h>
 #include <cmath>
 
 using namespace rm;
@@ -176,4 +178,62 @@ TEST_CASE("vector cross") {
         CHECK(equal(cross(b, c), a));
         CHECK(equal(cross(c, b), mul(a, -1.0f)));
     }
+}
+
+TEST_CASE_TEMPLATE("vector init", T, vector2, vector3) {
+    SUBCASE("zero") {
+        T v;
+        for(size_t i = 0; i < T::size; i++) {
+                CHECK(v[i] == 0.0f);
+        }
+    }
+    SUBCASE("constant") {
+        T v(10.0f);
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(v[i] == 10.0f);
+        }
+    }
+    SUBCASE("array") {
+        typename T::element_type d[T::size];
+        for(size_t i = 0; i < T::size; i++) {
+            d[i] = i;
+        }
+        T v(d);
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(v[i] == i);
+        }
+    }
+}
+
+TEST_CASE_TEMPLATE("generic vector math", T, vector2, vector2i, vector2ui, vector3, vector<float, 3>) {
+    SUBCASE("add") {
+        typename T::element_type da[T::size];
+        typename T::element_type db[T::size];
+        for(size_t i = 0; i < T::size; i++) {
+            da[i] = i;
+            db[i] = i+3;
+        }
+        T a(da);
+        T b(db);
+        T c = add(a, b);
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(c[i] == i + i + 3);
+        }
+    }
+
+    SUBCASE("sub") {
+        typename T::element_type da[T::size];
+        typename T::element_type db[T::size];
+        for(size_t i = 0; i < T::size; i++) {
+            da[i] = i+3;
+            db[i] = i;
+        }
+        T a(da);
+        T b(db);
+        T c = sub(a, b);
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(c[i] == 3);
+        }
+    }
+
 }

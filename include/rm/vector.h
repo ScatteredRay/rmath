@@ -6,6 +6,7 @@
 namespace rm {
     struct vector2 {
         static const size_t size = 2;
+        using element_type = float;
         union {
             struct {
                 float x;
@@ -14,6 +15,7 @@ namespace rm {
             float d[size];
         };
 
+        vector2();
         vector2(float _xy);
         vector2(const vector2& _xy);
         vector2(float _x, float _y);
@@ -25,15 +27,17 @@ namespace rm {
 
     struct vector3 {
         static const size_t size = 3;
+        using element_type = float;
         union {
             struct {
                 float x;
                 float y;
                 float z;
             };
-            float d[3];
+            float d[size];
         };
 
+        vector3();
         vector3(float _xyz);
         vector3(const vector3& _xyz);
         vector3(const vector2& _xy, float _z);

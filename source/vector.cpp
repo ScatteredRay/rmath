@@ -5,6 +5,8 @@
 #include <cmath>
 
 namespace rm {
+    vector2::vector2() : x(0), y(0) {}
+
     vector2::vector2(float _xy) {
         this->x = this->y = _xy;
     }
@@ -33,6 +35,8 @@ namespace rm {
         assert(i < this->size);
         return this->d[i];
     }
+
+    vector3::vector3() : x(0), y(0), z(0) {}
 
     vector3::vector3(float _xyz) {
         this->x = this->y = this->z = _xyz;
