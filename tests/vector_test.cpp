@@ -165,3 +165,15 @@ TEST_CASE("vector length mag") {
         CHECK(sum(a) == 4.0f);
     }
 }
+
+TEST_CASE("vector cross") {
+    SUBCASE("vector3") {
+        vector3 a(1, 0, 0);
+        vector3 b(0, 1, 0);
+        vector3 c(0, 0, 1);
+
+        CHECK(equal(cross(a, b), c));
+        CHECK(equal(cross(b, c), a));
+        CHECK(equal(cross(c, b), mul(a, -1.0f)));
+    }
+}

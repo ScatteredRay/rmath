@@ -60,6 +60,9 @@ namespace rm {
     float dot(const vector2&, const vector2&);
     float dot(const vector3&, const vector3&);
 
+    // TODO: replace with general outer product, and dualization.
+    vector3 cross(const vector3&, const vector3&);
+
     float lengthSqr(const vector2&);
     float length(const vector2&);
     vector2 normalize(const vector2&);
@@ -73,6 +76,9 @@ namespace rm {
 
     vector2 lerp(const vector2&, const vector2&, float t);
     vector2 slerp(const vector2&, const vector2&, float t);
+
+    bool equal(const vector2&, const vector2&);
+    bool equal(const vector3&, const vector3&);
 
     vector2 operator+(const vector2&, const vector2&);
     vector2 operator-(const vector2&, const vector2&);

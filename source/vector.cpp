@@ -126,6 +126,13 @@ namespace rm {
         return l.x*r.x + l.y*r.y + l.z*r.z;
     }
 
+    vector3 cross(const vector3& l, const vector3& r) {
+        return vector3(
+            l.y*r.z - l.z*r.y,
+            l.z*r.x - l.x*r.z,
+            l.x*r.y - l.y*r.x);
+    }
+
     float lengthSqr(const vector2& v) {
         return dot(v, v);
     }
@@ -156,5 +163,13 @@ namespace rm {
 
     float sum(const vector3& v) {
         return dot(v, vector3(1.0f));
+    }
+
+    bool equal(const vector2& l, const vector2& r) {
+        return l.x == r.x && l.y == r.y;
+    }
+
+    bool equal(const vector3& l, const vector3& r) {
+        return l.x == r.x && l.y == r.y && l.z == r.z;
     }
 }
