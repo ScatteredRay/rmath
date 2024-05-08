@@ -7,8 +7,8 @@ DEP_ROOT=$(BUILD_ROOT)deps/
 .DEFAULT_GOAL := build/rmath-test
 
 SOURCES = tests/test.cpp tests/vector_test.cpp \
-    source/vector.cpp source/vector_generic.cpp \
-    source/vectormath.cpp
+    src/vector.cpp src/vector_generic.cpp \
+    src/vectormath.cpp
 
 OBJECTS = $(patsubst %.cpp,$(OBJ_ROOT)%.o,$(SOURCES))
 

@@ -2,7 +2,7 @@ Build {
    Units = function()
       local test = Program {
          Name = "rmathtest",
-         Sources = { "test.cpp", "source/vectormath.cpp" },
+         Sources = { "test.cpp", "src/vectormath.cpp" },
          Libs = { },
          Includes = {"include"},
       }
