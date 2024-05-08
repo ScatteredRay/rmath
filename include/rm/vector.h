@@ -3,6 +3,8 @@
 
 #include <stddef.h> //size_t
 
+#include "rm/defs.h"
+
 namespace rm {
     struct vector2 {
         static const size_t size = 2;
@@ -15,14 +17,14 @@ namespace rm {
             float d[size];
         };
 
-        vector2();
-        vector2(float _xy);
-        vector2(const vector2& _xy);
-        vector2(float _x, float _y);
-        vector2(float _xy[size]);
+        RM_FN vector2();
+        RM_FN vector2(float _xy);
+        RM_FN vector2(const vector2& _xy);
+        RM_FN vector2(float _x, float _y);
+        RM_FN vector2(float _xy[size]);
 
-        float& operator[](int i);
-        float operator[](int i) const;
+        RM_FN float& operator[](int i);
+        RM_FN float operator[](int i) const;
     };
 
     struct vector3 {
@@ -37,60 +39,60 @@ namespace rm {
             float d[size];
         };
 
-        vector3();
-        vector3(float _xyz);
-        vector3(const vector3& _xyz);
-        vector3(const vector2& _xy, float _z);
-        vector3(float _x, const vector2& _yz);
-        vector3(float _x, float _y, float _z);
-        vector3(float _xyz[size]);
+        RM_FN vector3();
+        RM_FN vector3(float _xyz);
+        RM_FN vector3(const vector3& _xyz);
+        RM_FN vector3(const vector2& _xy, float _z);
+        RM_FN vector3(float _x, const vector2& _yz);
+        RM_FN vector3(float _x, float _y, float _z);
+        RM_FN vector3(float _xyz[size]);
 
-        float& operator[](int i);
-        float operator[](int i ) const;
+        RM_FN float& operator[](int i);
+        RM_FN float operator[](int i ) const;
     };
 
     // Do we actually want a `vector4` shouldn't the w component be implied?
 
-    vector2 add(const vector2&, const vector2&);
-    vector2 sub(const vector2&, const vector2&);
+    RM_FN vector2 add(const vector2&, const vector2&);
+    RM_FN vector2 sub(const vector2&, const vector2&);
 
-    vector3 add(const vector3&, const vector3&);
-    vector3 sub(const vector3&, const vector3&);
+    RM_FN vector3 add(const vector3&, const vector3&);
+    RM_FN vector3 sub(const vector3&, const vector3&);
 
     // Does this become ambigious with a vector product? should this be scale()?
-    vector2 mul(const vector2&, float);
-    vector3 mul(const vector3&, float);
+    RM_FN vector2 mul(const vector2&, float);
+    RM_FN vector3 mul(const vector3&, float);
 
-    float dot(const vector2&, const vector2&);
-    float dot(const vector3&, const vector3&);
+    RM_FN float dot(const vector2&, const vector2&);
+    RM_FN float dot(const vector3&, const vector3&);
 
     // TODO: replace with general outer product, and dualization.
-    vector3 cross(const vector3&, const vector3&);
+    RM_FN vector3 cross(const vector3&, const vector3&);
 
-    float lengthSqr(const vector2&);
-    float length(const vector2&);
-    vector2 normalize(const vector2&);
+    RM_FN float lengthSqr(const vector2&);
+    RM_FN float length(const vector2&);
+    RM_FN vector2 normalize(const vector2&);
 
-    float lengthSqr(const vector3&);
-    float length(const vector3&);
-    vector3 normalize(const vector3&);
+    RM_FN float lengthSqr(const vector3&);
+    RM_FN float length(const vector3&);
+    RM_FN vector3 normalize(const vector3&);
 
-    float sum(const vector2&);
-    float sum(const vector3&);
+    RM_FN float sum(const vector2&);
+    RM_FN float sum(const vector3&);
 
-    vector2 lerp(const vector2&, const vector2&, float t);
-    vector2 slerp(const vector2&, const vector2&, float t);
+    RM_FN vector2 lerp(const vector2&, const vector2&, float t);
+    RM_FN vector2 slerp(const vector2&, const vector2&, float t);
 
-    bool equal(const vector2&, const vector2&);
-    bool equal(const vector3&, const vector3&);
+    RM_FN bool equal(const vector2&, const vector2&);
+    RM_FN bool equal(const vector3&, const vector3&);
 
-    vector2 operator+(const vector2&, const vector2&);
-    vector2 operator-(const vector2&, const vector2&);
-    vector2 operator*(const vector2&, float);
+    RM_FN vector2 operator+(const vector2&, const vector2&);
+    RM_FN vector2 operator-(const vector2&, const vector2&);
+    RM_FN vector2 operator*(const vector2&, float);
 
-    vector3 operator+(const vector3&, const vector3&);
-    vector3 operator-(const vector3&, const vector3&);
-    vector3 operator*(const vector3&, float);
+    RM_FN vector3 operator+(const vector3&, const vector3&);
+    RM_FN vector3 operator-(const vector3&, const vector3&);
+    RM_FN vector3 operator*(const vector3&, float);
 
     // What of these aliases do we like?
     using vec2 = vector2;

@@ -1,6 +1,7 @@
 #ifndef _RMATH_VECTOR_GENERIC_H_
 #define _RMATH_VECTOR_GENERIC_H_
 
+#include "rm/defs.h"
 #include "rm/vector.h"
 
 #include <stdint.h>
@@ -11,8 +12,8 @@ namespace rm {
         static const size_t size = s;
         using element_type = t;
 
-        vector(t _d);
-        vector(t _d[size]);
+        RM_FN vector(t _d);
+        RM_FN vector(t _d[size]);
     };
 
     template<typename t>
@@ -26,28 +27,29 @@ namespace rm {
             };
             t d[size];
         };
-        vector(t _xy);
-        vector(const vector<t, 2>& _xy);
-        vector(t _x, t _y);
-        vector(t _xy[size]);
 
-        t& operator[](int i);
-        t operator[](int i) const;
+        RM_FN vector(t _xy);
+        RM_FN vector(const vector<t, 2>& _xy);
+        RM_FN vector(t _x, t _y);
+        RM_FN vector(t _xy[size]);
+
+        RM_FN t& operator[](int i);
+        RM_FN t operator[](int i) const;
     };
 
     template<>
     struct vector<float, 3> : public vector3 {
-        vector(float _xyz);
-        vector(const vector<float, 3>& _xyz);
-        vector(float _x, float _y, float _z);
-        vector(float _xyz[size]);
+        RM_FN vector(float _xyz);
+        RM_FN vector(const vector<float, 3>& _xyz);
+        RM_FN vector(float _x, float _y, float _z);
+        RM_FN vector(float _xyz[size]);
     };
 
     template<typename t>
-    t add(const t& l, const t& r);
+    RM_FN t add(const t& l, const t& r);
 
     template<typename t>
-    t sub(const t& l, const t& r);
+    RM_FN t sub(const t& l, const t& r);
 
     using vector2i = vector<int32_t, 2>;
     using vector2ui = vector<uint32_t, 2>;
