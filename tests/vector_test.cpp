@@ -235,5 +235,49 @@ TEST_CASE_TEMPLATE("generic vector math", T, vector2, vector2i, vector2ui, vecto
             CHECK(c[i] == 3);
         }
     }
+}
 
+TEST_CASE_TEMPLATE("operator vector math", T, vector3) {
+    SUBCASE("add") {
+        typename T::element_type da[T::size];
+        typename T::element_type db[T::size];
+        for(size_t i = 0; i < T::size; i++) {
+            da[i] = i;
+            db[i] = i+3;
+        }
+        T a(da);
+        T b(db);
+        T c = a + b;
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(c[i] == i + i + 3);
+        }
+    }
+
+    SUBCASE("sub") {
+        typename T::element_type da[T::size];
+        typename T::element_type db[T::size];
+        for(size_t i = 0; i < T::size; i++) {
+            da[i] = i+3;
+            db[i] = i;
+        }
+        T a(da);
+        T b(db);
+        T c = a - b;
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(c[i] == 3);
+        }
+    }
+
+    SUBCASE("mul") {
+        typename T::element_type da[T::size];
+        for(size_t i = 0; i < T::size; i++) {
+            da[i] = i+1;
+        }
+        T a(da);
+        typename T::element_type b = 3;
+        T c = a * b;
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(c[i] == (i+1)*3);
+        }
+    }
 }

@@ -176,4 +176,28 @@ namespace rm {
     RM_FN bool equal(const vector3& l, const vector3& r) {
         return l.x == r.x && l.y == r.y && l.z == r.z;
     }
+
+    RM_FN vector2 operator+(const vector2& l, const vector2& r) {
+        return add(l, r);
+    }
+
+    RM_FN vector2 operator-(const vector2& l, const vector2& r) {
+        return sub(l, r);
+    }
+
+    RM_FN vector2 operator*(const vector2& v, float s) {
+        return mul(v, s);
+    }
+
+    RM_FN vector3 operator+(const vector3& l, const vector3& r) {
+        return add(l, r);
+    }
+
+    RM_FN vector3 operator-(const vector3& l, const vector3& r) {
+        return sub(l, r);
+    }
+
+    RM_FN vector3 operator*(const vector3& v, float s) {
+        return mul(v, s);
+    }
 }
