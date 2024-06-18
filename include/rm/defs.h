@@ -3,7 +3,7 @@
 
 
 // We want RMath to be usable in hip/cuda.
-#ifdef __HIPCC__
+#if defined(__HIPCC__) && !defined(__clang_analyzer__)
 #define RM_FN __device__ __host__
 #define RM_ASSERT(...)
 #else
