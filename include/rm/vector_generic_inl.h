@@ -8,6 +8,13 @@
 namespace rm {
 
     template<typename t>
+    RM_FN vector<t, 2>::vector() {
+        for(size_t i = 0; i < 2; i++) {
+            this->d[i] = 0;
+        }
+    }
+
+    template<typename t>
     RM_FN vector<t, 2>::vector(t _d) {
         for(size_t i = 0; i < 2; i++) {
             this->d[i] = _d;
@@ -21,11 +28,11 @@ namespace rm {
         }
     }
 
-    template<typename t>
-    RM_FN vector<t, 2>::vector(const vector<t, 2>& _xy) {
-        this->x = _xy.x;
-        this->y = _xy.y;
-    }
+    // template<typename t>
+    // RM_FN vector<t, 2>::vector(const vector<t, 2>& _xy) {
+    //     this->x = _xy.x;
+    //     this->y = _xy.y;
+    // }
 
     template<typename t>
     RM_FN vector<t, 2>::vector(t _x, t _y) {

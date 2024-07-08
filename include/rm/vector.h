@@ -19,7 +19,8 @@ namespace rm {
 
         RM_FN vector2();
         RM_FN vector2(float _xy);
-        RM_FN vector2(const vector2& _xy);
+        // defaulted so is_trivially_copyable
+        RM_FN vector2(const vector2& _xy) = default;
         RM_FN vector2(float _x, float _y);
         RM_FN vector2(float _xy[size]);
 
@@ -41,7 +42,8 @@ namespace rm {
 
         RM_FN vector3();
         RM_FN vector3(float _xyz);
-        RM_FN vector3(const vector3& _xyz);
+        // defaulted so is_trivially_copyable
+        RM_FN vector3(const vector3& _xyz) = default;
         RM_FN vector3(const vector2& _xy, float _z);
         RM_FN vector3(float _x, const vector2& _yz);
         RM_FN vector3(float _x, float _y, float _z);

@@ -12,7 +12,10 @@ namespace rm {
         static const size_t size = s;
         using element_type = t;
 
+        RM_FN vector() = default; // TODO: zero-initialize
         RM_FN vector(t _d);
+        // defaulted so is_trivially_copyable
+        RM_FN vector(const vector<t, s>&) = default;
         RM_FN vector(t _d[size]);
     };
 
@@ -28,8 +31,10 @@ namespace rm {
             t d[size];
         };
 
+        RM_FN vector();
         RM_FN vector(t _xy);
-        RM_FN vector(const vector<t, 2>& _xy);
+        // defaulted so is_trivially_copyable
+        RM_FN vector(const vector<t, 2>& _xy) = default;
         RM_FN vector(t _x, t _y);
         RM_FN vector(t _xy[size]);
 
@@ -39,8 +44,10 @@ namespace rm {
 
     template<>
     struct vector<float, 3> : public vector3 {
+        RM_FN vector();
         RM_FN vector(float _xyz);
-        RM_FN vector(const vector<float, 3>& _xyz);
+        // defaulted so is_trivially_copyable
+        RM_FN vector(const vector<float, 3>& _xyz) = default;
         RM_FN vector(float _x, float _y, float _z);
         RM_FN vector(float _xyz[size]);
     };

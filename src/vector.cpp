@@ -2,7 +2,8 @@
 
 #include <stdint.h>
 #include <assert.h>
-#include <cmath>
+#include <cmath> //sqrt
+#include <type_traits>
 
 namespace rm {
     RM_FN vector2::vector2() : x(0), y(0) {}
@@ -11,10 +12,10 @@ namespace rm {
         this->x = this->y = _xy;
     }
 
-    RM_FN vector2::vector2(const vector2& _xy) {
-        this->x = _xy.x;
-        this->y = _xy.y;
-    }
+    // RM_FN vector2::vector2(const vector2& _xy) {
+    //     this->x = _xy.x;
+    //     this->y = _xy.y;
+    // }
 
     RM_FN vector2::vector2(float _x, float _y) {
         this->x = _x;
@@ -42,11 +43,11 @@ namespace rm {
         this->x = this->y = this->z = _xyz;
     }
 
-    RM_FN vector3::vector3(const vector3& _xyz) {
-        this->x = _xyz.x;
-        this->y = _xyz.y;
-        this->z = _xyz.z;
-    }
+    // RM_FN vector3::vector3(const vector3& _xyz) {
+    //     this->x = _xyz.x;
+    //     this->y = _xyz.y;
+    //     this->z = _xyz.z;
+    // }
 
     RM_FN vector3::vector3(const vector2& _xy, float _z) {
         this->x = _xy.x;
@@ -200,4 +201,7 @@ namespace rm {
     RM_FN vector3 operator*(const vector3& v, float s) {
         return mul(v, s);
     }
+
+    static_assert(std::is_trivially_copyable<vector2>::value);
+    static_assert(std::is_trivially_copyable<vector3>::value);
 }

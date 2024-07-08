@@ -180,11 +180,17 @@ TEST_CASE("vector cross") {
     }
 }
 
-TEST_CASE_TEMPLATE("vector init", T, vector2, vector3) {
+TEST_CASE_TEMPLATE("vector init", T, vector2, vector2i, vector2ui, vector3, vector<float, 3>) {
     SUBCASE("zero") {
         T v;
         for(size_t i = 0; i < T::size; i++) {
-                CHECK(v[i] == 0.0f);
+            CHECK(v[i] == 0.0f);
+        }
+    }
+    SUBCASE("explicit zero") {
+        T v = T();
+        for(size_t i = 0; i < T::size; i++) {
+            CHECK(v[i] == 0.0f);
         }
     }
     SUBCASE("constant") {
@@ -201,6 +207,33 @@ TEST_CASE_TEMPLATE("vector init", T, vector2, vector3) {
         T v(d);
         for(size_t i = 0; i < T::size; i++) {
             CHECK(v[i] == i);
+        }
+    }
+}
+
+TEST_CASE_TEMPLATE("vector copy", T, vector2, vector2i, vector2ui, vector3, vector<float, 3>) {
+    SUBCASE("assignment") {
+        T s = T();
+        for(size_t i = 0; i < T::size; i++) {
+            typename T::element_type n = i + 1;
+            s[i] = n;
+        }
+        T d = s;
+        for(size_t i = 0; i < T::size; i++) {
+            typename T::element_type n = i + 1;
+            CHECK(d[i] == n);
+        }
+    }
+    SUBCASE("copy construct") {
+        T s = T();
+        for(size_t i = 0; i < T::size; i++) {
+            typename T::element_type n = i + 1;
+            s[i] = n;
+        }
+        T d(s);
+        for(size_t i = 0; i < T::size; i++) {
+            typename T::element_type n = i + 1;
+            CHECK(d[i] == n);
         }
     }
 }
