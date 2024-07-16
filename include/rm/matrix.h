@@ -27,9 +27,31 @@ namespace rm {
     struct vector3;
     struct vector4;
 
+    enum class MatrixLayout {
+        row_major,
+        column_major
+    };
+
+    enum class VectorLayout {
+        row,
+        column
+    };
+
+    constexpr bool isBasisMajor(MatrixLayout m, VectorLayout v) {
+        if(
+            (m == MatrixLayout::row_major && v == VectorLayout::row) ||
+            (m == MatrixLayout::column_major && v == VectorLayout::column))
+            return true;
+        else
+            return false;
+    }
+
     struct matrix44 {
         static const size_t size_rows = 4;
         static const size_t size_columns = 4;
+        static const MatrixLayout matrix_layout = MatrixLayout::column_major;
+        static const VectorLayout vector_layout = VectorLayout::column;
+        static const bool basis_major = isBasisMajor(matrix_layout, vector_layout);
         using element_type = float;
         union {
             float d[size_rows][size_columns];
@@ -57,6 +79,12 @@ namespace rm {
         RM_FN static matrix44 scale(float _xyx);
         RM_FN static matrix44 translate(const vector3& translate);
 
+        template<typename T, MatrixLayout srcLayout, VectorLayout srcVector>
+        RM_FN static matrix44 convertFrom44(const T* data);
+
+        template<typename T, MatrixLayout dstLayout, VectorLayout dstVector>
+        RM_FN void convertTo44(T* data);
+
         RM_FN float& operator()(int r, int c);
         RM_FN float operator()(int r, int c) const;
     };
@@ -71,6 +99,31 @@ namespace rm {
     RM_FN matrix44 operator*(float, const matrix44&);
     RM_FN vector3 operator*(const matrix44&, const vector3&);
     RM_FN vector4 operator*(const matrix44&, const vector4&);
+
+    template<typename T, MatrixLayout srcLayout, VectorLayout srcVector>
+    RM_FN matrix44 matrix44::convertFrom44(const T* data) {
+        const bool needsTranspose = isBasisMajor(srcLayout, srcVector) == basis_major;
+        matrix44 m;
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                int idx = needsTranspose ? i+j*4 : i*4+j;
+                m.d[i][j] = data[idx];
+            }
+        }
+        return m;
+    }
+
+    template<typename T, MatrixLayout dstLayout, VectorLayout dstVector>
+    RM_FN void matrix44::convertTo44(T* data) {
+        const bool needsTranspose = isBasisMajor(dstLayout, dstVector) == basis_major;
+        for(int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                int idx = needsTranspose ? i+j*4 : i*4+j;
+                data[idx] = d[i][j];
+            }
+        }
+    }
+
 
     using matrix4 = matrix44;
     using mat4 = matrix44;

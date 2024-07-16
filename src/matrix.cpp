@@ -167,6 +167,6 @@ namespace rm {
         return mul(m, v);
     }
 
-
     static_assert(std::is_trivially_copyable<matrix44>::value);
+    static_assert(matrix44::basis_major == true);
 }
