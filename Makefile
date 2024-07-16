@@ -8,7 +8,8 @@ DEP_ROOT=$(BUILD_ROOT)deps/
 
 SOURCES = tests/test.cpp tests/vector_test.cpp \
     src/vector.cpp src/vector_generic.cpp \
-    src/vectormath.cpp
+    src/vectormath.cpp src/matrix.cpp \
+    tests/matrix_test.cpp
 
 OBJECTS = $(patsubst %.cpp,$(OBJ_ROOT)%.o,$(SOURCES))
 

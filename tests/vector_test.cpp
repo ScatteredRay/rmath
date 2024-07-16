@@ -67,12 +67,63 @@ TEST_CASE("vector access") {
         CHECK(c.z == 9);
     }
 
+    SUBCASE("vector4") {
+        vector4 a(3, 4, 5, 6);
+
+        CHECK(a.x == 3);
+        CHECK(a.y == 4);
+        CHECK(a.z == 5);
+        CHECK(a.w == 6);
+
+        CHECK(a[0] == 3);
+        CHECK(a[1] == 4);
+        CHECK(a[2] == 5);
+        CHECK(a[3] == 6);
+
+        CHECK(a.d[0] == 3);
+        CHECK(a.d[1] == 4);
+        CHECK(a.d[2] == 5);
+        CHECK(a.d[3] == 6);
+
+        a.x = 6;
+        a[1] = 7;
+        a.d[2] = 8;
+        a[3] = 9;
+        CHECK(a[0] == 6);
+        CHECK(a.d[1] == 7);
+        CHECK(a.z == 8);
+        CHECK(a.w == 9);
+
+        vector4 c(9);
+        CHECK(c.x == 9);
+        CHECK(c.y == 9);
+        CHECK(c.z == 9);
+        CHECK(c.w == 9);
+    }
+
     SUBCASE("generic vector3") {
         vector<float, 3> a(3, 4, 5);
 
         CHECK(a.x == 3);
         CHECK(a.y == 4);
         CHECK(a.z == 5);
+    }
+}
+
+TEST_CASE("vector conversion") {
+    SUBCASE("vector4") {
+        vector3 v3(4, 6, 8);
+        vector4 v4(v3);
+        vector3 b3(v4);
+
+        CHECK(v4.x == 4);
+        CHECK(v4.y == 6);
+        CHECK(v4.z == 8);
+        CHECK(v4.w == 0);
+
+        CHECK(b3.x == 4);
+        CHECK(b3.y == 6);
+        CHECK(b3.z == 8);
     }
 }
 
