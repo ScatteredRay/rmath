@@ -46,7 +46,7 @@ namespace rm {
 
     RM_FN vector3::vector3(const vector4& _xyzw) {
         // I think we should be converting vec4's with non-zero w's to a type that can represent a point.
-        assert(_xyzw.w == 0.0f);
+        RM_ASSERT(_xyzw.w == 0.0f);
         this->x = _xyzw.x;
         this->y = _xyzw.y;
         this->z = _xyzw.z;
