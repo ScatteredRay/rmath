@@ -102,7 +102,7 @@ namespace rm {
 
     template<typename T, MatrixLayout srcLayout, VectorLayout srcVector>
     RM_FN matrix44 matrix44::convertFrom44(const T* data) {
-        const bool needsTranspose = isBasisMajor(srcLayout, srcVector) == basis_major;
+        const bool needsTranspose = isBasisMajor(srcLayout, srcVector) != basis_major;
         matrix44 m;
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
@@ -115,7 +115,7 @@ namespace rm {
 
     template<typename T, MatrixLayout dstLayout, VectorLayout dstVector>
     RM_FN void matrix44::convertTo44(T* data) {
-        const bool needsTranspose = isBasisMajor(dstLayout, dstVector) == basis_major;
+        const bool needsTranspose = isBasisMajor(dstLayout, dstVector) != basis_major;
         for(int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 int idx = needsTranspose ? i+j*4 : i*4+j;

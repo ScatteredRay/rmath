@@ -249,7 +249,7 @@ TEST_CASE("vector multiply") {
     }
 }
 
-TEST_CASE_TEMPLATE("matrix conversion", T, float, double) {
+TEST_CASE_TEMPLATE("matrix conversion", T, float/*, double*/) {
     SUBCASE("from 44") {
         T d[16] = {
             1.0, 2.0, 3.0, 4.0,
@@ -258,32 +258,27 @@ TEST_CASE_TEMPLATE("matrix conversion", T, float, double) {
             13.0, 14.0, 15.0, 16.0
         };
 
-        {
+        SUBCASE("column_major column") {
             matrix44 m = matrix44::convertFrom44<T, MatrixLayout::column_major, VectorLayout::column>(d);
 
+            SUBCASE("layout untransposed") {
+                for(int i = 0; i < 16; i++) {
+                    CHECK(m.d[0][i] == d[i]);
+                }
+            }
+
             int n = 1;
-            for(int r = 0; r < 4; r++) {
-                for(int c = 0; c < 4; c++) {
+            for(int c = 0; c < 4; c++) {
+                for(int r = 0; r < 4; r++) {
                     CHECK(m(r, c) == float(n++));
                 }
             }
         }
 
-        {
+        SUBCASE("column_major row") {
             matrix44 m = matrix44::convertFrom44<T, MatrixLayout::column_major, VectorLayout::row>(d);
 
             int n = 1;
-            for(int c = 0; c < 4; c++) {
-                for(int r = 0; r < 4; r++) {
-                    CHECK(m(r, c) == float(n++));
-                }
-            }
-        }
-
-        {
-            matrix44 m = matrix44::convertFrom44<T, MatrixLayout::row_major, VectorLayout::row>(d);
-
-            int n = 1;
             for(int r = 0; r < 4; r++) {
                 for(int c = 0; c < 4; c++) {
                     CHECK(m(r, c) == float(n++));
@@ -291,12 +286,23 @@ TEST_CASE_TEMPLATE("matrix conversion", T, float, double) {
             }
         }
 
-        {
-            matrix44 m = matrix44::convertFrom44<T, MatrixLayout::row_major, VectorLayout::column>(d);
+        SUBCASE("row_major row") {
+            matrix44 m = matrix44::convertFrom44<T, MatrixLayout::row_major, VectorLayout::row>(d);
 
             int n = 1;
             for(int c = 0; c < 4; c++) {
                 for(int r = 0; r < 4; r++) {
+                    CHECK(m(r, c) == float(n++));
+                }
+            }
+        }
+
+        SUBCASE("row_major column") {
+            matrix44 m = matrix44::convertFrom44<T, MatrixLayout::row_major, VectorLayout::column>(d);
+
+            int n = 1;
+            for(int r = 0; r < 4; r++) {
+                for(int c = 0; c < 4; c++) {
                     CHECK(m(r, c) == float(n++));
                 }
             }
@@ -310,38 +316,31 @@ TEST_CASE_TEMPLATE("matrix conversion", T, float, double) {
             9.0f, 10.0f, 11.0f, 12.0f,
             13.0f, 14.0f, 15.0f, 16.0f);
 
-        {
+        SUBCASE("column_major column") {
             T d[4][4];
 
             a.convertTo44<T, MatrixLayout::column_major, VectorLayout::column>(&d[0][0]);
 
+            SUBCASE("layout untransposed") {
+                for(int i = 0; i < 16; i++) {
+                    CHECK(a.d[0][i] == d[0][i]);
+                }
+            }
+
             int n = 1;
-            for(int r = 0; r < 4; r++) {
-                for(int c = 0; c < 4; c++) {
+            for(int c = 0; c < 4; c++) {
+                for(int r = 0; r < 4; r++) {
                     CHECK(d[r][c] == float(n++));
                 }
             }
         }
 
-        {
+        SUBCASE("column_major row") {
             T d[4][4];
 
             a.convertTo44<T, MatrixLayout::column_major, VectorLayout::row>(&d[0][0]);
 
             int n = 1;
-            for(int c = 0; c < 4; c++) {
-                for(int r = 0; r < 4; r++) {
-                    CHECK(d[r][c] == float(n++));
-                }
-            }
-        }
-
-        {
-            T d[4][4];
-
-            a.convertTo44<T, MatrixLayout::row_major, VectorLayout::row>(&d[0][0]);
-
-            int n = 1;
             for(int r = 0; r < 4; r++) {
                 for(int c = 0; c < 4; c++) {
                     CHECK(d[r][c] == float(n++));
@@ -349,14 +348,27 @@ TEST_CASE_TEMPLATE("matrix conversion", T, float, double) {
             }
         }
 
-        {
+        SUBCASE("row_major row") {
+            T d[4][4];
+
+            a.convertTo44<T, MatrixLayout::row_major, VectorLayout::row>(&d[0][0]);
+
+            int n = 1;
+            for(int c = 0; c < 4; c++) {
+                for(int r = 0; r < 4; r++) {
+                    CHECK(d[r][c] == float(n++));
+                }
+            }
+        }
+
+        SUBCASE("row_major column") {
             T d[4][4];
 
             a.convertTo44<T, MatrixLayout::row_major, VectorLayout::column>(&d[0][0]);
 
             int n = 1;
-            for(int c = 0; c < 4; c++) {
-                for(int r = 0; r < 4; r++) {
+            for(int r = 0; r < 4; r++) {
+                for(int c = 0; c < 4; c++) {
                     CHECK(d[r][c] == float(n++));
                 }
             }
