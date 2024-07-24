@@ -90,6 +90,9 @@ namespace rm {
     RM_FN vector3 add(const vector3&, const vector3&);
     RM_FN vector3 sub(const vector3&, const vector3&);
 
+    RM_FN vector4 add(const vector4&, const vector4&);
+    RM_FN vector4 sub(const vector4&, const vector4&);
+
     // Does this become ambigious with a vector product? should this be scale()?
     RM_FN vector2 mul(const vector2&, float);
     RM_FN vector3 mul(const vector3&, float);
@@ -131,11 +134,26 @@ namespace rm {
     RM_FN vector3 operator+(const vector3&, const vector3&);
     RM_FN vector3 operator-(const vector3&, const vector3&);
     RM_FN vector3 operator*(const vector3&, float);
+
+    RM_FN vector4 operator+(const vector4&, const vector4&);
+    RM_FN vector4 operator-(const vector4&, const vector4&);
     RM_FN vector4 operator*(const vector4&, float);
 
     RM_FN bool operator==(const vector2&, const vector2&);
     RM_FN bool operator==(const vector3&, const vector3&);
     RM_FN bool operator==(const vector4&, const vector4&);
+
+    RM_FN vector2& operator+=(vector2&, const vector2&);
+    RM_FN vector2& operator-=(vector2&, const vector2&);
+    RM_FN vector2& operator*=(vector2&, float);
+
+    RM_FN vector3& operator+=(vector3&, const vector3&);
+    RM_FN vector3& operator-=(vector3&, const vector3&);
+    RM_FN vector3& operator*=(vector3&, float);
+
+    RM_FN vector4& operator+=(vector4&, const vector4&);
+    RM_FN vector4& operator-=(vector4&, const vector4&);
+    RM_FN vector4& operator*=(vector4&, float);
 
     // What of these aliases do we like?
     using vec2 = vector2;

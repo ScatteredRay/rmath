@@ -144,6 +144,22 @@ namespace rm {
             l.z-r.z);
     }
 
+    RM_FN vector4 add(const vector4& l, const vector4& r) {
+        return vector4(
+            l.x+r.x,
+            l.y+r.y,
+            l.z+r.z,
+            l.w+r.w);
+    }
+
+    RM_FN vector4 sub(const vector4& l, const vector4& r) {
+        return vector4(
+            l.x-r.x,
+            l.y-r.y,
+            l.z-r.z,
+            l.w-r.w);
+    }
+
     RM_FN vector2 mul(const vector2& v, float s) {
         return vector2(
             v.x*s,
@@ -268,6 +284,14 @@ namespace rm {
         return mul(v, s);
     }
 
+    RM_FN vector4 operator+(const vector4& l, const vector4& r) {
+        return add(l, r);
+    }
+
+    RM_FN vector4 operator-(const vector4& l, const vector4& r) {
+        return sub(l, r);
+    }
+
     RM_FN vector4 operator*(const vector4& v, float s) {
         return mul(v, s);
     }
@@ -282,6 +306,51 @@ namespace rm {
 
     RM_FN bool operator==(const vector4& l, const vector4& r) {
         return equal(l, r);
+    }
+
+    RM_FN vector2& operator+=(vector2& l, const vector2& r) {
+        l = add(l, r);
+        return l;
+    }
+
+    RM_FN vector2& operator-=(vector2& l, const vector2& r) {
+        l = sub(l, r);
+        return l;
+    }
+
+    RM_FN vector2& operator*=(vector2& v, float s) {
+        v = mul(v, s);
+        return v;
+    }
+
+    RM_FN vector3& operator+=(vector3& l, const vector3& r) {
+        l = add(l, r);
+        return l;
+    }
+
+    RM_FN vector3& operator-=(vector3& l, const vector3& r) {
+        l = sub(l, r);
+        return l;
+    }
+
+    RM_FN vector3& operator*=(vector3& v, float s) {
+        v = mul(v, s);
+        return v;
+    }
+
+    RM_FN vector4& operator+=(vector4& l, const vector4& r) {
+        l = add(l, r);
+        return l;
+    }
+
+    RM_FN vector4& operator-=(vector4& l, const vector4& r) {
+        l = sub(l, r);
+        return l;
+    }
+
+    RM_FN vector4& operator*=(vector4& v, float s) {
+        v = mul(v, s);
+        return v;
     }
 
     static_assert(std::is_trivially_copyable<vector2>::value);

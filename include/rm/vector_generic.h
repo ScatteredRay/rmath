@@ -34,9 +34,33 @@ namespace rm {
         RM_FN vector();
         RM_FN vector(t _xy);
         // defaulted so is_trivially_copyable
-        RM_FN vector(const vector<t, 2>& _xy) = default;
+        RM_FN vector(const vector<t, 2>&) = default;
         RM_FN vector(t _x, t _y);
-        RM_FN vector(t _xy[size]);
+        RM_FN vector(t _d[size]);
+
+        RM_FN t& operator[](int i);
+        RM_FN t operator[](int i) const;
+    };
+
+    template<typename t>
+    struct vector<t, 3> {
+        static const size_t size = 3;
+        using element_type = t;
+        union {
+            struct {
+                t x;
+                t y;
+                t z;
+            };
+            t d[size];
+        };
+
+        RM_FN vector();
+        RM_FN vector(t _xyz);
+        // defaulted so is_trivially_copyable
+        RM_FN vector(const vector<t, 3>&) = default;
+        RM_FN vector(t _x, t _y, t _z);
+        RM_FN vector(t _d[size]);
 
         RM_FN t& operator[](int i);
         RM_FN t operator[](int i) const;
@@ -60,6 +84,8 @@ namespace rm {
 
     using vector2i = vector<int32_t, 2>;
     using vector2ui = vector<uint32_t, 2>;
+    using vector3i = vector<int32_t, 3>;
+    using vector3ui = vector<uint32_t, 3>;
 }
 
 #endif //_RMATH_VECTOR_GENERIC_H_
