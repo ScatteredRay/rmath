@@ -356,4 +356,8 @@ namespace rm {
     static_assert(std::is_trivially_copyable<vector2>::value);
     static_assert(std::is_trivially_copyable<vector3>::value);
     static_assert(std::is_trivially_copyable<vector4>::value);
+
+    static_assert(sizeof(vector2) == 4 * 2);
+    static_assert(sizeof(vector3) == 4 * 3);
+    static_assert(sizeof(vector4) == 4 * 4);
 }
