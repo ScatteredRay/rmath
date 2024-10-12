@@ -5,10 +5,40 @@
 
 #include "rm/defs.h"
 
+// I don't really love these swizzles, but
+// for compat with 
+#define RM_WITH_SWIZZLES 1
+
 namespace rm {
     struct vector2;
     struct vector3;
     struct vector4;
+
+#if RM_WITH_SWIZZLES
+    template<typename t, int n0>
+    struct VectorSwizzle {
+        operator t() {
+            t* d = reinterpret_cast<t*>(this);
+            return d[n0];
+        }
+    };
+
+    template<typename t, int n0, int n1>
+    struct VectorSwizzle2 {
+        operator t() {
+            typename t::element_type* d = reinterpret_cast<typename t::element_type*>(this);
+            return t(d[n0], d[n1]);
+        }
+    };
+
+    template<typename t, int n0, int n1, int n2>
+    struct VectorSwizzle3 {
+        operator t() {
+            typename t::element_type* d = reinterpret_cast<typename t::element_type*>(this);
+            return t(d[n0], d[n1], d[n2]);
+        }
+    };
+#endif
 
     struct vector2 {
         static const size_t size = 2;
@@ -19,6 +49,14 @@ namespace rm {
                 float y;
             };
             float d[size];
+#if RM_WITH_SWIZZLES
+            VectorSwizzle<float, 0> r;
+            VectorSwizzle<float, 1> g;
+            VectorSwizzle2<vector2, 0, 1> rg;
+            VectorSwizzle2<vector2, 1, 0> gr;
+            VectorSwizzle2<vector2, 0, 1> xy;
+            VectorSwizzle2<vector2, 1, 0> yx;
+#endif
         };
 
         RM_FN vector2();
@@ -30,6 +68,7 @@ namespace rm {
 
         RM_FN float& operator[](int i);
         RM_FN float operator[](int i) const;
+
     };
 
     struct vector3 {
@@ -42,6 +81,24 @@ namespace rm {
                 float z;
             };
             float d[size];
+#if RM_WITH_SWIZZLES
+            VectorSwizzle<float, 0> r;
+            VectorSwizzle<float, 1> g;
+            VectorSwizzle<float, 1> b;
+            VectorSwizzle2<vector2, 0, 1> rg;
+            VectorSwizzle2<vector2, 1, 0> gr;
+            VectorSwizzle2<vector2, 1, 2> gb;
+            VectorSwizzle2<vector2, 2, 1> bg;
+            VectorSwizzle2<vector2, 0, 2> rb;
+            VectorSwizzle2<vector2, 0, 1> xy;
+            VectorSwizzle2<vector2, 1, 0> yx;
+            VectorSwizzle2<vector2, 1, 2> yz;
+            VectorSwizzle2<vector2, 2, 1> zy;
+            VectorSwizzle2<vector2, 0, 2> xz;
+            VectorSwizzle2<vector2, 2, 0> zx;
+            VectorSwizzle3<vector3, 0, 1, 2> rgb;
+            VectorSwizzle3<vector3, 2, 1, 0> bgr;
+#endif
         };
 
         RM_FN vector3();
@@ -71,6 +128,24 @@ namespace rm {
                 float w;
             };
             float d[size];
+#if RM_WITH_SWIZZLES
+            VectorSwizzle<float, 0> r;
+            VectorSwizzle<float, 1> g;
+            VectorSwizzle<float, 1> b;
+            VectorSwizzle2<vector2, 0, 1> rg;
+            VectorSwizzle2<vector2, 1, 0> gr;
+            VectorSwizzle2<vector2, 1, 2> gb;
+            VectorSwizzle2<vector2, 2, 1> bg;
+            VectorSwizzle2<vector2, 0, 2> rb;
+            VectorSwizzle2<vector2, 0, 1> xy;
+            VectorSwizzle2<vector2, 1, 0> yx;
+            VectorSwizzle2<vector2, 1, 2> yz;
+            VectorSwizzle2<vector2, 2, 1> zy;
+            VectorSwizzle2<vector2, 0, 2> xz;
+            VectorSwizzle2<vector2, 2, 0> zx;
+            VectorSwizzle3<vector3, 0, 1, 2> rgb;
+            VectorSwizzle3<vector3, 2, 1, 0> bgr;
+#endif
         };
 
         RM_FN vector4();

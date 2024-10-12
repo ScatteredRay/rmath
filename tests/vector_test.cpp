@@ -110,6 +110,32 @@ TEST_CASE("vector access") {
     }
 }
 
+TEST_CASE("vector swizzle") {
+    SUBCASE("vector2") {
+        vector2 a(4, 5);
+        CHECK(a.r == 4);
+        CHECK(a.g == 5);
+
+        {
+            vector2 b = a.rg;
+            CHECK(b.x == 4);
+            CHECK(b.y == 5);
+        }
+
+        {
+            vector2 b = a.gr;
+            CHECK(b.x == 5);
+            CHECK(b.y == 4);
+        }
+
+        {
+            vector2 b = a.yx;
+            CHECK(b.x == 5);
+            CHECK(b.y == 4);
+        }
+    }
+}
+
 TEST_CASE("vector conversion") {
     SUBCASE("vector4") {
         vector3 v3(4, 6, 8);
