@@ -315,7 +315,7 @@ TEST_CASE_TEMPLATE("vector copy", T, vector2, vector2i, vector2ui, vector3, vect
     }
 }
 
-TEST_CASE_TEMPLATE("generic vector math", T, vector2, vector2i, vector2ui, vector3, vector<float, 3>) {
+TEST_CASE_TEMPLATE("generic vector math", T, vector2, vector2i, vector2ui, vector3, vector<float, 2>, vector<float, 3>, vector<float, 4>) {
     SUBCASE("add") {
         typename T::element_type da[T::size];
         typename T::element_type db[T::size];
