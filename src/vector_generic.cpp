@@ -8,17 +8,20 @@
 namespace rm {
     RM_FN vector<float, 2>::vector() : vector2() {}
     RM_FN vector<float, 2>::vector(float _xy) : vector2(_xy) {}
+    RM_FN vector<float, 2>::vector(const vector2& _xy) : vector2(_xy) {}
     RM_FN vector<float, 2>::vector(float _x, float _y) : vector2(_x, _y) {}
     RM_FN vector<float, 2>::vector(float _xy[size]) : vector2(_xy) {}
 
     RM_FN vector<float, 3>::vector() : vector3() {}
     RM_FN vector<float, 3>::vector(float _xyz) : vector3(_xyz) {}
+    RM_FN vector<float, 3>::vector(const vector3& _xyz) : vector3(_xyz) {}
     //RM_FN vector<float, 3>::vector(const vector<float, 3>& _xyz) : vector3(_xyz) {}
     RM_FN vector<float, 3>::vector(float _x, float _y, float  _z) : vector3(_x, _y, _z) {}
     RM_FN vector<float, 3>::vector(float _xyz[size]) : vector3(_xyz) {}
 
     RM_FN vector<float, 4>::vector() : vector4() {}
     RM_FN vector<float, 4>::vector(float _xyzw) : vector4(_xyzw) {}
+    RM_FN vector<float, 4>::vector(const vector4& _xyzw) : vector4(_xyzw) {}
     RM_FN vector<float, 4>::vector(float _x, float _y, float  _z, float _w) : vector4(_x, _y, _z, _w) {}
     RM_FN vector<float, 4>::vector(float _xyzw[size]) : vector4(_xyzw) {}
 

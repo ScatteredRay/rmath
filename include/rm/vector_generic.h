@@ -70,6 +70,7 @@ namespace rm {
     struct vector<float, 2> : public vector2 {
         RM_FN vector();
         RM_FN vector(float _xy);
+        RM_FN vector(const vector2& _xy);
         RM_FN vector(const vector<float, 2>& _xy) = default;
         RM_FN vector(float _x, float _y);
         RM_FN vector(float _xy[size]);
@@ -80,6 +81,7 @@ namespace rm {
         RM_FN vector();
         RM_FN vector(float _xyz);
         // defaulted so is_trivially_copyable
+        RM_FN vector(const vector3& _xyz);
         RM_FN vector(const vector<float, 3>& _xyz) = default;
         RM_FN vector(float _x, float _y, float _z);
         RM_FN vector(float _xyz[size]);
@@ -89,6 +91,7 @@ namespace rm {
     struct vector<float, 4> : public vector4 {
         RM_FN vector();
         RM_FN vector(float _xyzw);
+        RM_FN vector(const vector4& _xyz);
         RM_FN vector(const vector<float, 4>& _xyzw) = default;
         RM_FN vector(float _x, float _y, float _z, float _w);
         RM_FN vector(float _xyzw[size]);
